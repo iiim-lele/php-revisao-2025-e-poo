@@ -1,4 +1,7 @@
 <?php
+// =======================
+// SISTEMA DE BIBLIOTECA
+// =======================
 
 // Classe Abstrata Base
 abstract class ItemBiblioteca {
@@ -78,7 +81,7 @@ class Biblioteca {
 // Criando um Objeto/ Instância
 $biblioteca = new Biblioteca();
 
-// Criando itens (1 Licro e 1 Revista)
+// Criando itens (1 Livro e 1 Revista)
 $livro1 = new Livro ("Python para Iniciantes", "L001");
 $Revista1 = new Revista ("TechNews", "R001");
 

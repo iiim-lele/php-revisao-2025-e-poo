@@ -3,20 +3,23 @@
 // SISTEMA DE LOCADORA DE VEÍCULOS
 // ==================================
 
-// Classe abstrata
+// Classe abstrata Base
 abstract class Veiculo {
-    private $modelo;
-    private $placa;
-    private $disponivel;
+    protected string $modelo;
+    protected string $placa;
+    protected bool $disponivel;
 
-    public function __construct($modelo, $placa) {
+    // Inicialização com método Construtor
+    public function __construct(string $modelo, string $placa) {
         $this->modelo = $modelo;
         $this->placa = $placa;
         $this->disponivel = true;
     }
 
+    // Método abstrato (Não implementado agora)
     abstract public function calcularAluguel(int $dias): float;
 
+    // Métodos concretos (Já implementados)
     public function isDisponivel(): bool {
         return $this->disponivel;
     }
@@ -38,24 +41,26 @@ abstract class Veiculo {
     }
 }
 
-// Classe Carro
+// Classes Concretas (Carro e Moto)
+// Pilar da Herança aplicado abaixo
 class Carro extends Veiculo {
     public function calcularAluguel(int $dias): float {
         return $dias * 100.00;
     }
 }
 
-// Classe Moto
 class Moto extends Veiculo {
     public function calcularAluguel(int $dias): float {
         return $dias * 50.00;
     }
 }
 
-// Classe Locadora
+// Classe gerenciadora (Locadora)
 class Locadora {
-    private $veiculos = [];
+    // Array
+    private array $veiculos = [];
 
+    // Métodos para gerenciar (adicionar, alugar e devolver)
     public function adicionarVeiculo(Veiculo $veiculo) {
         $this->veiculos[$veiculo->getModelo()] = $veiculo;
         echo "Veículo '{$veiculo->getModelo()}' adicionado ao acervo.<br>";
@@ -94,14 +99,16 @@ class Locadora {
     }
 }
 
-// Simulação
+// Criando um Objeto/Instância
 $locadora = new Locadora();
 
-$carro = new Carro("HB20", "ABC1234");
-$moto = new Moto("Yamaha XTZ", "XYZ9876");
+// Criando itens (Carro e Moto 1)
+$carro1 = new Carro("HB20", "ABC1234");
+$moto1 = new Moto("Yamaha XTZ", "XYZ9876");
 
-$locadora->adicionarVeiculo($carro);
-$locadora->adicionarVeiculo($moto);
+// Adicionar itens a locadora e exibir
+$locadora->adicionarVeiculo($carro1);
+$locadora->adicionarVeiculo($moto1);
 
 echo "<br>";
 
